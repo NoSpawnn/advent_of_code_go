@@ -1,0 +1,62 @@
+package y2024
+
+import (
+	"log"
+	"math"
+	"regexp"
+	"slices"
+	"strconv"
+)
+
+func Part1(input string) int {
+	leftNums, rightNums := getColumns(input)
+
+	if len(leftNums) != len(rightNums) {
+		log.Fatalf(
+			"Number of numbers must be the same in both columns (Left: %d, Right: %d)\n",
+			len(leftNums),
+			len(rightNums),
+		)
+	}
+
+	slices.Sort(leftNums)
+	slices.Sort(rightNums)
+
+	totalDistance := float64(0)
+	for i := 0; i < len(leftNums); i++ {
+		totalDistance += math.Abs(float64(leftNums[i] - rightNums[i]))
+	}
+
+	return int(totalDistance)
+}
+
+func Part2(input string) int {
+	similarityScore := 0
+	leftNums, rightNums := getColumns(input)
+
+	occurrences := map[int]int{}
+	for _, num := range rightNums {
+		occurrences[num]++
+	}
+
+	for _, num := range leftNums {
+		similarityScore += num * occurrences[num]
+	}
+
+	return similarityScore
+}
+
+func getColumns(input string) ([]int, []int) {
+	rgx := regexp.MustCompile(`(\d+)   (\d+)`)
+	matches := rgx.FindAllStringSubmatch(input, -1)
+
+	// Split into columns
+	leftNums, rightNums := make([]int, len(matches)), make([]int, len(matches))
+	for i, match := range matches {
+		l, r := match[1], match[2]
+		leftNums[i], _ = strconv.Atoi(l)
+		rightNums[i], _ = strconv.Atoi(r)
+	}
+
+	return leftNums, rightNums
+}
