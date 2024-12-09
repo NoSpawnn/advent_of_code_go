@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	input := util.ReadFile("inputs/2024/day_1.txt")
-	ans := y2024.Part2(input)
+	input := util.ReadFileAsString("inputs/2024/day_2.txt")
+	ans := y2024.Day2Part1(input)
 	fmt.Println(ans)
 }
