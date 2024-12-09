@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func ReadFile(path string) string {
+func ReadFileAsString(path string) string {
 	contents, err := os.ReadFile(path)
 	if err != nil {
 		log.Fatal(err)

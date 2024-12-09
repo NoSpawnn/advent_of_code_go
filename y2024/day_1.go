@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func Part1(input string) int {
+func Day1Part1(input string) int {
 	leftNums, rightNums := getColumns(input)
 
 	if len(leftNums) != len(rightNums) {
@@ -30,7 +30,7 @@ func Part1(input string) int {
 	return int(totalDistance)
 }
 
-func Part2(input string) int {
+func Day1Part2(input string) int {
 	similarityScore := 0
 	leftNums, rightNums := getColumns(input)
 
