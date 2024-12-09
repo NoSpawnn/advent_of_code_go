@@ -40,7 +40,7 @@ func Day1Part2(input string) int {
 	}
 
 	for _, num := range leftNums {
-		similarityScore += num * occurrences[num]
+		similarityScore += num * occurrences[num] // else 0
 	}
 
 	return similarityScore
