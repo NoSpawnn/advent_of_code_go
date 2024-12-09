@@ -1,7 +1,6 @@
 package y2024
 
 import (
-	"log"
 	"math"
 	"regexp"
 	"slices"
@@ -10,14 +9,6 @@ import (
 
 func Day1Part1(input string) int {
 	leftNums, rightNums := getColumns(input)
-
-	if len(leftNums) != len(rightNums) {
-		log.Fatalf(
-			"Number of numbers must be the same in both columns (Left: %d, Right: %d)\n",
-			len(leftNums),
-			len(rightNums),
-		)
-	}
 
 	slices.Sort(leftNums)
 	slices.Sort(rightNums)
