@@ -8,10 +8,10 @@ import (
 )
 
 func Day3Part1(input string) int {
-	ops := getMulNums(input)
+	nums := getMulNums(input)
 
 	result := 0
-	for _, nums := range ops {
+	for _, nums := range nums {
 		result += nums[0] * nums[1]
 	}
 
@@ -19,10 +19,10 @@ func Day3Part1(input string) int {
 }
 
 func Day3Part2(input string) int {
-	ops := getMulNumsWithToggle(input)
+	nums := getMulNumsHonouringToggle(input)
 
 	result := 0
-	for _, nums := range ops {
+	for _, nums := range nums {
 		result += nums[0] * nums[1]
 	}
 
@@ -43,7 +43,7 @@ func getMulNums(input string) [][]int {
 	return nums
 }
 
-func getMulNumsWithToggle(input string) [][]int {
+func getMulNumsHonouringToggle(input string) [][]int {
 	rgx := regexp.MustCompile(`(mul\((\d{1,4}),(\d{1,4})\))|(do\(\)|don't\(\))`)
 	ops := rgx.FindAllStringSubmatch(input, -1)
 
