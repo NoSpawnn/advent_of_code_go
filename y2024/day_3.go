@@ -5,7 +5,6 @@ package y2024
 import (
 	"regexp"
 	"strconv"
-	"strings"
 )
 
 func Day3Part1(input string) int {
@@ -51,15 +50,13 @@ func getMulNumsWithToggle(input string) [][]int {
 	var nums [][]int
 	enabled := true
 	for _, op := range ops {
-		if strings.Contains(op[0], "do") {
-			if op[0] == "do()" {
-				enabled = true
-			} else if op[0] == "don't()" {
-				enabled = false
-			}
+		if op[0] == "do()" {
+			enabled = true
+		} else if op[0] == "don't()" {
+			enabled = false
 		}
 
-		if enabled && strings.Contains(op[0], "mul") {
+		if enabled && op[0][0:3] == "mul" {
 			n1, _ := strconv.Atoi(op[2])
 			n2, _ := strconv.Atoi(op[3])
 			nums = append(nums, []int{n1, n2})
