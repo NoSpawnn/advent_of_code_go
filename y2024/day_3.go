@@ -5,6 +5,7 @@ package y2024
 import (
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 func Day3Part1(input string) int {
@@ -56,7 +57,7 @@ func getMulNumsHonouringToggle(input string) [][]int {
 			enabled = false
 		}
 
-		if enabled && op[0][0:3] == "mul" {
+		if enabled && strings.HasPrefix(op[0], "mul") {
 			n1, _ := strconv.Atoi(op[2])
 			n2, _ := strconv.Atoi(op[3])
 			nums = append(nums, []int{n1, n2})
