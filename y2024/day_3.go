@@ -3,7 +3,6 @@
 package y2024
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -48,7 +47,7 @@ func getMulNums(input string) [][]int {
 func getMulNumsWithToggle(input string) [][]int {
 	rgx := regexp.MustCompile(`(mul\((\d{1,4}),(\d{1,4})\))|(do\(\)|don't\(\))`)
 	ops := rgx.FindAllStringSubmatch(input, -1)
-	fmt.Println(ops)
+
 	var nums [][]int
 	enabled := true
 	for _, op := range ops {
