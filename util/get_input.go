@@ -1,4 +1,4 @@
-package main
+package util
 
 import (
 	"errors"
@@ -8,13 +8,14 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 )
 
 const (
 	EnvVarName       = "AOC_SESSION_KEY"                          // Environment variable that holds the session key
 	InputBaseUrl     = "https://adventofcode.com/%d/day/%d/input" // Format with year then day
-	InputDir         = "%d/input"                                 // Input directory, format with year
-	InputFileNameFmt = "day_%02d.txt"                             // Format with day
+	InputDir         = "inputs/%d"                                // Input directory, format with year
+	InputFileNameFmt = "day_%d.txt"                               // Format with day
 	UserAgentStr     = "github.com/NoSpawnn/advent_of_code_go"    // Contact info so I can get shouted at for spamming
 
 	Usage = `
@@ -57,7 +58,7 @@ func download(sessionKey string, year, day int) {
 
 	f := filepath.Join(dir, fmt.Sprintf(InputFileNameFmt, day))
 	if _, err := os.Stat(f); err == nil {
-		fmt.Println("!! input file already exists !!")
+		log.Fatal("!! input file already exists !!")
 		return
 	}
 
@@ -88,26 +89,26 @@ func download(sessionKey string, year, day int) {
 	os.WriteFile(f, body, os.ModePerm)
 }
 
-//func main() {
-//	sessionKey, err := getSessionKey()
-//	if err != nil {
-//		if len(os.Args) != 4 {
-//			fmt.Println(err, Usage)
-//			return
-//		}
-//
-//		sessionKey = os.Args[3]
-//	}
-//
-//	year, err := strconv.Atoi(os.Args[1])
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	day, err := strconv.Atoi(os.Args[2])
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	download(sessionKey, year, day)
-//}
+func DownloadInput(yearString, dayString string) {
+	sessionKey, err := getSessionKey()
+	if err != nil {
+		if len(os.Args) != 4 {
+			fmt.Println(err, Usage)
+			return
+		}
+
+		sessionKey = os.Args[3]
+	}
+
+	year, err := strconv.Atoi(yearString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	day, err := strconv.Atoi(dayString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	download(sessionKey, year, day)
+}
