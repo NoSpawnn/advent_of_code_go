@@ -15,7 +15,7 @@ const (
 	EnvVarName       = "AOC_SESSION_KEY"                          // Environment variable that holds the session key
 	InputBaseUrl     = "https://adventofcode.com/%d/day/%d/input" // Format with year then day
 	InputDir         = "inputs/%d"                                // Input directory, format with year
-	InputFileNameFmt = "day_%d.txt"                               // Format with day
+	InputFileNameFmt = "day_%02d.txt"                             // Format with day
 	UserAgentStr     = "github.com/NoSpawnn/advent_of_code_go"    // Contact info so I can get shouted at for spamming
 
 	Usage = `

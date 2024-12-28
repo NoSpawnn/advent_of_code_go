@@ -14,7 +14,7 @@ const (
 	decreasing
 )
 
-func Day2Part1(input string) int {
+func Day02Part1(input string) int {
 	safeCount := 0
 
 	for _, line := range strings.Split(input, "\n") {
@@ -26,7 +26,7 @@ func Day2Part1(input string) int {
 	return safeCount
 }
 
-func Day2Part2(input string) int {
+func Day02Part2(input string) int {
 	safeCount := 0
 
 	for _, line := range strings.Split(input, "\n") {

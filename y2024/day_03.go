@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func Day3Part1(input string) int {
+func Day03Part1(input string) int {
 	nums := getMulNums(input)
 
 	result := 0
@@ -18,7 +18,7 @@ func Day3Part1(input string) int {
 	return result
 }
 
-func Day3Part2(input string) int {
+func Day03Part2(input string) int {
 	nums := getMulNumsHonouringToggle(input)
 
 	result := 0

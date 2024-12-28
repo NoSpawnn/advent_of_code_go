@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-func Day1Part1(input string) int {
+func Day01Part1(input string) int {
 	leftNums, rightNums := getColumns(input)
 
 	slices.Sort(leftNums)
@@ -23,7 +23,7 @@ func Day1Part1(input string) int {
 	return int(totalDistance)
 }
 
-func Day1Part2(input string) int {
+func Day01Part2(input string) int {
 	similarityScore := 0
 	leftNums, rightNums := getColumns(input)
 
