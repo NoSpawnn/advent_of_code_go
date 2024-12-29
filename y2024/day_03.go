@@ -8,7 +8,7 @@ import (
 )
 
 func Day03Part1(input string) int {
-	nums := getMulNums(input)
+	nums := parse(input, `(mul\((\d{1,3}),(\d{1,3})\))`)
 
 	result := 0
 	for _, nums := range nums {
@@ -19,7 +19,7 @@ func Day03Part1(input string) int {
 }
 
 func Day03Part2(input string) int {
-	nums := getMulNumsHonouringToggle(input)
+	nums := parse(input, `(mul\((\d{1,3}),(\d{1,3})\))|(do\(\)|don't\(\))`)
 
 	result := 0
 	for _, nums := range nums {
@@ -29,22 +29,8 @@ func Day03Part2(input string) int {
 	return result
 }
 
-func getMulNums(input string) [][]int {
-	rgx := regexp.MustCompile(`mul\((\d{1,4}),(\d{1,4})\)`)
-	muls := rgx.FindAllStringSubmatch(input, -1)
-
-	nums := make([][]int, len(muls))
-	for i, match := range muls {
-		n1, _ := strconv.Atoi(match[1])
-		n2, _ := strconv.Atoi(match[2])
-		nums[i] = []int{n1, n2}
-	}
-
-	return nums
-}
-
-func getMulNumsHonouringToggle(input string) [][]int {
-	rgx := regexp.MustCompile(`(mul\((\d{1,4}),(\d{1,4})\))|(do\(\)|don't\(\))`)
+func parse(input string, rx string) [][]int {
+	rgx := regexp.MustCompile(rx)
 	ops := rgx.FindAllStringSubmatch(input, -1)
 
 	var nums [][]int
